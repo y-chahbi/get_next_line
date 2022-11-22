@@ -1,57 +1,85 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/18 09:03:15 by ychahbi           #+#    #+#             */
+/*   Updated: 2022/11/18 09:03:15 by ychahbi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 
 
-int howmany_of_n_func(char *str)
+// char	*ft_strdup(const char *s1)
+// {
+// 	char	*ptr;
+// 	int		dex;
+
+// 	ptr = (char *)malloc((ft_strlen(s1) + 1));
+// 	if (!ptr)
+// 		return (NULL);
+// 	else
+// 	{
+// 		dex = 0;
+// 		while (s1[dex] != '\0')
+// 		{
+// 			ptr[dex] = s1[dex];
+// 			dex++;
+// 		}
+// 		ptr[dex] = '\0';
+// 	}
+// 	return (ptr);
+// }
+
+char	*ft_strchr(const char *s, int c)
 {
-	int i = 0;
-	int j = 1;
-	while(str[i] != '\0')
+	int	dex;
+
+	dex = 0;
+	while (s[dex] != '\0')
 	{
-		if(str[i] == '\n')
-			j++;
-		i++;
+		if (s[dex] == (char)c)
+			return (&((char *)s)[dex]);
+		dex++;
 	}
-	return j;
+	if (s[dex] == c)
+		return (&((char *)s)[dex]);
+	return (NULL);
 }
 
-int* locations__n_func(int *l__n, char *str)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	int i = 0;
-	int num = 0;
-	while(str[i] != '\0')
+	size_t	dex;
+
+	dex = 0;
+	while (dex < len)
 	{
-		if (str[i] == '\n')
-		{
-			l__n[num] = i;
-			num++;
-			i++;
-		}
-	i++;
+		((unsigned char *)b)[dex] = (unsigned char)c;
+		dex++;
 	}
-	return l__n;
+	return (b);
 }
 
-char	*ft_strdup(const char *s1)
+void	ft_bzero(void *s, size_t n)
 {
-	char	*ptr;
-	int		dex;
+	ft_memset(s, 0, n);
+}
 
-	ptr = (char *)malloc((ft_strlen(s1) + 1));
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(count * size);
 	if (!ptr)
 		return (NULL);
-	else
-	{
-		dex = 0;
-		while (s1[dex] != '\0')
-		{
-			ptr[dex] = s1[dex];
-			dex++;
-		}
-		ptr[dex] = '\0';
-	}
+	ft_bzero(ptr, count * size);
 	return (ptr);
 }
+
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -59,20 +87,26 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t		dexx;
 	char		*ptr;
 
-	if (!s1 || !s2)
-		return (NULL);
+
 	dex = 0;
 	dexx = 0;
+
+	if(!s2 || !s1)
+		return NULL;
 	ptr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!ptr)
 		return (NULL);
-	while (dex < ft_strlen(s1))
+	while (s1[dex] != '\0')
 	{
 		ptr[dex] = s1[dex];
 		dex++;
 	}
-	while (dexx < ft_strlen(s2))
-		ptr[dex++] = s2[dexx++];
+	while (s2[dexx])
+	{
+		ptr[dex] = s2[dexx];
+		dex++;
+		dexx++;
+	}
 	ptr[dex] = '\0';
 	return (ptr);
 }
@@ -88,3 +122,31 @@ size_t	ft_strlen(const char *s)
 	}
 	return (dex);
 }
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	dee;
+	char	*ptr;
+
+	// puts("a");
+	if (!s)
+		return (NULL);
+	if (start >= ft_strlen(s))
+		start = ft_strlen(s);
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	ptr = malloc((len + 1) * sizeof(char));
+	if (!ptr)
+		return (NULL);
+	dee = 0;
+	while (dee < len)
+	{
+		ptr[dee] = s[start];
+		dee++;
+		start++;
+	}
+	ptr[len] = '\0';
+	return (ptr);
+}
+
+
