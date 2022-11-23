@@ -6,13 +6,11 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 09:03:15 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/11/18 09:03:15 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/11/23 13:24:14 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-
 
 // char	*ft_strdup(const char *s1)
 // {
@@ -51,35 +49,24 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-void	*ft_memset(void *b, int c, size_t len)
-{
-	size_t	dex;
-
-	dex = 0;
-	while (dex < len)
-	{
-		((unsigned char *)b)[dex] = (unsigned char)c;
-		dex++;
-	}
-	return (b);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	ft_memset(s, 0, n);
-}
-
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
+	size_t	dex;
+	size_t	len;
 
 	ptr = malloc(count * size);
 	if (!ptr)
 		return (NULL);
-	ft_bzero(ptr, count * size);
+	len = count * size;
+	dex = 0;
+	while (dex < len)
+	{
+		((unsigned char *)ptr)[dex] = 0;
+		dex++;
+	}
 	return (ptr);
 }
-
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -87,12 +74,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t		dexx;
 	char		*ptr;
 
-
 	dex = 0;
 	dexx = 0;
-
-	if(!s2 || !s1)
-		return NULL;
+	if (!s2 || !s1)
+		return (NULL);
 	ptr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!ptr)
 		return (NULL);
@@ -103,9 +88,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	while (s2[dexx])
 	{
-		ptr[dex] = s2[dexx];
-		dex++;
-		dexx++;
+		ptr[dex++] = s2[dexx++];
 	}
 	ptr[dex] = '\0';
 	return (ptr);
@@ -128,7 +111,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	dee;
 	char	*ptr;
 
-	// puts("a");
 	if (!s)
 		return (NULL);
 	if (start >= ft_strlen(s))
@@ -148,5 +130,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	ptr[len] = '\0';
 	return (ptr);
 }
-
-
