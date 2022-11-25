@@ -12,27 +12,6 @@
 
 #include "get_next_line.h"
 
-// char	*ft_strdup(const char *s1)
-// {
-// 	char	*ptr;
-// 	int		dex;
-
-// 	ptr = (char *)malloc((ft_strlen(s1) + 1));
-// 	if (!ptr)
-// 		return (NULL);
-// 	else
-// 	{
-// 		dex = 0;
-// 		while (s1[dex] != '\0')
-// 		{
-// 			ptr[dex] = s1[dex];
-// 			dex++;
-// 		}
-// 		ptr[dex] = '\0';
-// 	}
-// 	return (ptr);
-// }
-
 char	*ft_strchr(const char *s, int c)
 {
 	int	dex;

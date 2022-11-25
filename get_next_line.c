@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-static void	free_f(char **my_static)
+static void	free_my_static(char **my_static)
 {
 	free(*my_static);
 	*my_static = NULL;
@@ -34,13 +34,13 @@ static char	*file_r(int fd, char *my_static)
 	{
 		read_l = read(fd, buf, BUFFER_SIZE);
 		if (read_l == -1)
-			return (free_f(&buf), NULL);
+			return (free_my_static(&buf), NULL);
 		buf[read_l] = '\0';
 		tmp = my_static;
 		my_static = ft_strjoin(tmp, buf);
 		free(tmp);
 	}
-	return (free_f(&buf), my_static);
+	return (free_my_static(&buf), my_static);
 }
 
 static char	*line_g(char **my_static)
@@ -53,7 +53,7 @@ static char	*line_g(char **my_static)
 	if (ft_strlen(*my_static) && !ft_strchr (*my_static, '\n'))
 	{
 		tmp = ft_substr(*my_static, 0, ft_strlen(*my_static));
-		return (free_f(my_static), tmp);
+		return (free_my_static(my_static), tmp);
 	}
 	else if (ft_strchr (*my_static, '\n'))
 	{
@@ -61,11 +61,11 @@ static char	*line_g(char **my_static)
 		j = ft_strlen(ft_strchr(*my_static, '\n'));
 		tmp = ft_substr(*my_static, 0, i - j + 1);
 		str = ft_substr(ft_strchr(*my_static, '\n'), 1, j + 1);
-		free_f(my_static);
+		free_my_static(my_static);
 		*my_static = str;
 		return (tmp);
 	}
-	free_f(my_static);
+	free_my_static(my_static);
 	return (0);
 }
 

@@ -6,32 +6,11 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 08:33:23 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/11/23 13:40:03 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/11/25 09:57:04 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
-// char	*ft_strdup(const char *s1)
-// {
-// 	char	*ptr;
-// 	int		dex;
-
-// 	ptr = (char *)malloc((ft_strlen(s1) + 1));
-// 	if (!ptr)
-// 		return (NULL);
-// 	else
-// 	{
-// 		dex = 0;
-// 		while (s1[dex] != '\0')
-// 		{
-// 			ptr[dex] = s1[dex];
-// 			dex++;
-// 		}
-// 		ptr[dex] = '\0';
-// 	}
-// 	return (ptr);
-// }
 
 char	*ft_strchr(const char *s, int c)
 {
